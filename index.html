@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Stock Analysis </title>
+    <style>
+     
+    </style>
+	  <link rel="stylesheet" href="css/2.css">
+</head>
+<body>
+ 
+    <div class="space-container">
+        <!-- Grid Overlay -->
+        <div class="grid-overlay"></div>
+        
+        <!-- Star Field -->
+        <div class="star-field" id="starField"></div>
+        
+        <!-- Floating Particles -->
+        <div class="floating-particles" id="particleContainer"></div>
+        
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <div class="hero-block">
+                <div class="ai-badge">🤖 AI-Powered Analysis</div>
+                
+                <h1 class="primary-heading">Understand Market Trends with Our Daily AI Analysis</h1>
+                
+                <img src="img/1.jpg" alt="AI Stock Analysis" class="feature-image">
+                
+                <button class="cta-button" onclick="aa1()">
+                    📱 Get Your Analysis Report on WhatsApp
+                </button>
+                
+                <ul class="benefits-list">
+                    <li class="benefit-item">AI-analyzed stock recommendations</li>
+                    <li class="benefit-item">Real-time market trends and signals</li>
+                    <li class="benefit-item">Clear buy/sell indicators for every pick</li>
+                    <li class="benefit-item">Free access - No credit card required</li>
+					   <li class="benefit-item"> Only 10 reports remaining today!</li>
+                </ul>
+                
+               
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer-section">
+            <div class="disclaimer-text">
+                This tool is for reference and educational purposes only. It does not constitute any financial advice or financial product recommendations.
+            </div>
+            <div class="legal-links">
+                <a href="privacy.html" class="legal-link">Privacy Policy</a>
+                <a href="terms.html" class="legal-link">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp redirect function
+        function aa1() {
+            window.location.href = "https://wa.me/";
+        }
+
+        // Create star field
+        function createStars() {
+            const starField = document.getElementById('starField');
+            const numberOfStars = window.innerWidth < 768 ? 50 : 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = (2 + Math.random() * 3) + 's';
+                
+                starField.appendChild(star);
+            }
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const numberOfParticles = window.innerWidth < 768 ? 15 : 30;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Initialize effects
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createParticles();
+            
+            // Refresh particles periodically
+            setInterval(function() {
+                const container = document.getElementById('particleContainer');
+                container.innerHTML = '';
+                createParticles();
+            }, 12000);
+        });
+
+        // Prevent zoom on mobile
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent double-tap zoom
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
